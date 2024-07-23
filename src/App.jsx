@@ -7,12 +7,12 @@ function App() {
         Expense Tracker
       </h1>
 
-      <div className="overview-ctn">
+      <div className="overview">
 
         {/* balance container */}
         <div className="balance-ctn">
           <span className="balance">
-            $ 10000
+            balance: $10000
           </span>
 
           <button className="add-button">
@@ -22,64 +22,84 @@ function App() {
 
         {/* expense overview container */}
         <div className="expense-overview-ctn">
-          <div className="expenses">
-            <span className="expense-title">
+          <div className="tile">
+            <span className="tile-title">
               expense
             </span>
-            <span className="expense-amount">
+            <span className="tile-amount expense">
               $7000
             </span>
           </div>
           
-          <div className="income">
-            <span className="income-title">
+          <div className="tile">
+            <span className="tile-title">
               income
             </span>
-            <span className="income-amount">
+            <span className="tile-amount income">
               $10000
             </span>
           </div>
         </div>
 
-        {/* transactions list container */}
-        <div className="transactions-list-ctn">
+        {/* expense addition form */}
+        <form className="expense-form">
+          <input type="text" className="expense-form-input" placeholder="Amount"/>
+          <input type="text" className="expense-form-input" placeholder="Description"/>
 
-          {/* transaction search input */}
-          <input type="text" className="transactions-search"/>
+          <div>
+            <input type="radio" name="expense-type" id="expense-radio" className="expense-form-radio"/>
+            <label htmlFor="expense-radio" className="expense-form-label">
+              expense
+            </label>
+            <input type="radio" name="expense-type" id="income-radio" className="expense-form-radio"/>
+            <label htmlFor="income-radio" className="expense-form-label">
+              income
+            </label>
+          </div>
 
-          {/* transactions list */}
-          <div className="transactions-list">
+          <input type="submit" value="add transaction" className="add-button" />
+        </form>
+      </div>
 
-            <div className="transaction credit">
-              <span className="transaction-name">
-                Salary
-              </span>
+      {/* transactions list container */}
+      <div className="transactions-list-ctn">
 
-              <span className="transaction-amount">
-                $3000
-              </span>
-            </div>
-            <div className="transaction credit">
-              <span className="transaction-name">
-                Salary
-              </span>
+        {/* transaction search input */}
+        <input type="text" className="transactions-search" placeholder="search items"/>
 
-              <span className="transaction-amount">
-                $3000
-              </span>
-            </div>
-            <div className="transaction debit">
-              <span className="transaction-name">
-                food
-              </span>
+        {/* transactions list */}
+        <div className="transactions-list">
 
-              <span className="transaction-amount">
-                $2000
-              </span>
-            </div>
+          <div className="transaction credit">
+            <span className="transaction-name">
+              Salary
+            </span>
+
+            <span className="transaction-amount">
+              $3000
+            </span>
+          </div>
+          <div className="transaction credit">
+            <span className="transaction-name">
+              Salary
+            </span>
+
+            <span className="transaction-amount">
+              $3000
+            </span>
+          </div>
+          <div className="transaction debit">
+            <span className="transaction-name">
+              food
+            </span>
+
+            <span className="transaction-amount">
+              $2000
+            </span>
           </div>
         </div>
       </div>
+      
     </div>
   )
 }
