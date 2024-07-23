@@ -4,6 +4,10 @@ import { useState } from "react"
 import Tile from "./Tile";
 import Transaction from "./Transaction"
 
+// import creatively brand components
+import CreativelyTitle from "./creatively-branding/CreativelyTitle";
+import CreativelyLinks from "./creatively-branding/CreativelyWebDevLinks";
+
 
 function App() {
   // define app display state
@@ -87,9 +91,7 @@ function App() {
   return (
     <div className='app'>
       {/* app title */}
-      <h1 className="app-title">
-        Expense Tracker
-      </h1>
+      <CreativelyTitle title="React Expense Tracker App"/>
 
       {/* expense tracker overview container */}
       <div className="overview">
@@ -198,6 +200,10 @@ function App() {
           }
         </div>
       </div>
+
+
+      {/* creatively links */}
+      <CreativelyLinks/>
       
     </div>
   )
