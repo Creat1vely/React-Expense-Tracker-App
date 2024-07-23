@@ -1,5 +1,9 @@
 import { useState } from "react"
 
+// import child components to be used in the render
+import Tile from "./Tile";
+import Transaction from "./Transaction"
+
 
 function App() {
   // define app display state
@@ -112,31 +116,20 @@ function App() {
         <div className="expense-overview-ctn">
 
           {/* total expense text */}
-          <div className="tile">
-            <span className="tile-title">
-              expense
-            </span>
-            <span className="tile-amount expense">
-              ${ getTotalExpense( transactions) }
-            </span>
-          </div>
+          <Tile type="expense" getTotalExpense={getTotalExpense}
+            getTotalIncome={getTotalIncome} transactions={transactions} />
           
           {/* total income text */}
-          <div className="tile">
-            <span className="tile-title">
-              income
-            </span>
-            <span className="tile-amount income">
-              ${ getTotalIncome( transactions ) }
-            </span>
-          </div>
+          <Tile type="income" getTotalExpense={getTotalExpense}
+            getTotalIncome={getTotalIncome} transactions={transactions} />
         </div>
 
         {/* expense addition form */}
         { isExpenseFormVisible && <form className="expense-form" onSubmit={ addTransaction }>
           {/* amount input */}
           <input type="number" className="expense-form-input" 
-            placeholder="Amount" value={ amount } onChange={ ( e ) => { setAmount( e.target.valueAsNumber ) } }/>
+            placeholder="Amount" value={ amount } 
+            onChange={ ( e ) => { ( !Number.isNaN( e.target.valueAsNumber ) ) ? setAmount( e.target.valueAsNumber ) : 0 } }/>
           
           {/* desc input */}
           <input type="text" className="expense-form-input" 
@@ -173,29 +166,8 @@ function App() {
 
           {/* render list of transactions based on values in transaction data */}
           {
-            searchValue == "" && transactions.map( function( transaction ) {
-              // check transaction type and return appropriate jsx markup based on the type
-              if ( transaction.type == "Expense" ) {
-                return  <div className="transaction debit" key={ transaction.id }>
-                          <span className="transaction-name">
-                            { transaction.desc }
-                          </span>
-
-                          <span className="transaction-amount">
-                            ${ transaction.amount }
-                          </span>
-                        </div>
-              } else if ( transaction.type == "Income" ) {
-                return <div className="transaction credit" key={ transaction.id }>
-                          <span className="transaction-name">
-                            { transaction.desc }
-                          </span>
-
-                          <span className="transaction-amount">
-                            ${ transaction.amount }
-                          </span>
-                        </div>
-              }
+            searchValue == "" && transactions.map( function( { type, desc, amount, id } ) {
+              return <Transaction amount={ amount } type={ type } desc={ desc } key={ id }/>
             })
           }
           
@@ -220,29 +192,8 @@ function App() {
             })
             
             // render list of filtered transactions as elements for search results
-            .map( function( transaction ) {
-              // check transaction type and return appropriate jsx markup based on the type
-              if ( transaction.type == "Expense" ) {
-                return  <div className="transaction debit" key={ transaction.id }>
-                          <span className="transaction-name">
-                            { transaction.desc }
-                          </span>
-
-                          <span className="transaction-amount">
-                            ${ transaction.amount }
-                          </span>
-                        </div>
-              } else if ( transaction.type == "Income" ) {
-                return <div className="transaction credit" key={ transaction.id }>
-                          <span className="transaction-name">
-                            { transaction.desc }
-                          </span>
-
-                          <span className="transaction-amount">
-                            ${ transaction.amount }
-                          </span>
-                        </div>
-              }
+            .map( function( { amount, type, id, desc } ) {
+              return <Transaction amount={ amount } type={ type } desc={ desc } key={ id }/>
             })
           }
         </div>
