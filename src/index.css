@@ -19,12 +19,15 @@
     margin: 2rem auto;
 }
 
+/* styling the app's title */
 .app-title {
     text-align: center;
     text-transform: capitalize;
     margin-bottom: 1.25rem;
 }
 
+
+/* styling the app's balance and add-button */
 .balance-ctn {
     display: flex;
     justify-content: space-between;
@@ -46,6 +49,7 @@
     border-radius: 0.4375rem;
 }
 
+/* styling the expense-overview-ctn, total expense and income text */
 .expense-overview-ctn {
     display: flex;
     justify-content: stretch;
@@ -73,6 +77,8 @@
 .expense {
     color: red;
 }
+
+/* styling the expense addition form and it's children( inputs and radios ) */
 .expense-form {
     border: thin solid lightgray;
     padding: 1.25rem;
@@ -93,6 +99,8 @@
 }
 
 
+/* styling the transaction-list-ctn, it's search input and the listed transactions */
+/* elements */
 .transactions-list-ctn {
     margin-top: 1.25rem;
 }
@@ -105,6 +113,9 @@
     color: black;
     font-weight: 500;
     margin-bottom: 1rem;
+}
+.transactions-search::placeholder {
+    text-transform: capitalize;
 }
 .transactions-list {
     display: flex;
@@ -127,4 +138,13 @@
 }
 .debit .transaction-amount::before {
     content: "-";
+}
+
+
+/* styling the display text */
+.display-text {
+    color: lightgray;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 1.375rem;
 }
